@@ -16,9 +16,7 @@ class view{
         // load the assign data
        if (!empty($this->_data))
        {
-           //TODO: Unknow the extract cant register the variable
-           $data = array('a'=>'aaa', 'b'=>'bbb');
-           extract($data,EXTR_PREFIX_SAME, 'data');
+           extract($this->data,EXTR_PREFIX_SAME, 'data');
            $this->_data = array();
        }
 
