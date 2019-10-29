@@ -13,7 +13,7 @@
     <div class="header">
     </div>
     <div class="body">
-        {{ test }}
+        <?php echo $test; ?>
         {{ if (test)}}
     </div>
 </body>

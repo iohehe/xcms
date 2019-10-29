@@ -3,8 +3,17 @@ class index extends base{
 
 
 	public function indexAction(){
-	    $this->view->assign('template_name','heheda');
-		$this->view->display();
+		if (isset($_GET['id']))
+        {
+            $id = (int)$_GET['id'];
+        }
+		else
+        {
+            $this->view->display('index');
+        }
 	}
 
+	public function sayhelloAction(){
+	    echo 'hello';
+    }
 }

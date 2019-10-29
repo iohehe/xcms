@@ -16,25 +16,24 @@ class view{
         // load the assign data
        if (!empty($this->_data))
        {
-           //TODO: Unknow the extract cant register the variable
-           $data = array('a'=>'aaa', 'b'=>'bbb');
-           extract($data,EXTR_PREFIX_SAME, 'data');
-           $this->_data = array();
+           extract($this->_data,EXTR_PREFIX_SAME, 'data');
        }
+
 
        // load the static template
        if ($file_name == null)
        {
-           $file_name = 'header.html';
+           exit('Xcms: No input template');
        }
 
-       $compile_file = $this->user_compile_dir.$file_name.'.cache.php';
+       $template_file_path = $this->user_view_dir.$file_name.'.html';
+       $compile_file_path = $this->user_compile_dir.$file_name.'.cache.php';
 
-        if (is_file($this->user_view_dir.$file_name))
+        if (is_file($template_file_path))
        {
-           $view_content = $this->loadViewContent($this->user_view_dir.$file_name);
+           $view_content = $this->loadViewContent($template_file_path);
            // a cache here(which has be compiled)
-           $this->createCompilerFile($compile_file, $view_content);
+           $this->createCompilerFile($compile_file_path, $view_content);
        }
        else
        {
@@ -42,30 +41,46 @@ class view{
        }
 
        // key
-       include($compile_file);
+       include($compile_file_path);
     }
 
 
+    /**
+     * 加载页面模板内容
+     * @param $file_name
+     * @return string|string[]|null
+     */
     protected function loadViewContent($file_name){
         $view_content = file_get_contents($file_name);
         return $this->handleViewFile($view_content);
     }
 
 
+    /**
+     * 对模板内容的处理
+     * @param $view_content
+     * @return string|string[]|null
+     */
     protected function handleViewFile($view_content){
-            // you can achieve a template module like smarty
+            // 此处进行模板内容替换规则编写
+            // like jinja2
             $regex_array = array(
-                '/{xcms-\$(.+?)}/is'
+                '#{{ (.+?) }}#is',
             );
 
             $replace_array = array(
-                "<?php echo \$\\1;?>"
+                "<?php echo \$\\1; ?>",
             );
+
 
             return preg_replace($regex_array ,$replace_array ,$view_content);
     }
 
-
+    /**
+     * 根据模板内容在指定位置创建替换好的前端文件
+     * @param $compile_file
+     * @param $view_content
+     */
     protected function createCompilerFile($compile_file, $view_content){
         $dir_name = dirname($compile_file);
         if (is_dir($dir_name))
