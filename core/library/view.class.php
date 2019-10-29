@@ -16,7 +16,12 @@ class view{
         // load the assign data
        if (!empty($this->_data))
        {
+<<<<<<< HEAD
            extract($this->_data,EXTR_PREFIX_SAME, 'data');
+=======
+           extract($this->data,EXTR_PREFIX_SAME, 'data');
+           $this->_data = array();
+>>>>>>> master
        }
 
 
