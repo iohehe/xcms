@@ -9,13 +9,19 @@ define('TEMPLATE_DIR', XCMS.'template/');
 define('LIBRARY_DIR', XCMS.'core/library/');
 define('USER_CONTROLLER_DIR', XCMS.'controller/user/');
 
-require_once(LIBRARY_DIR.'base.class.php');
 
+/**
+ * Class xcms
+ */
 class xcms{
-	public $controller;
-	public $action;
+    // this may be cool
+    private static function init(){
+        require_once(LIBRARY_DIR.'base.class.php');
+    }
 
-	public static function run(){
+    public static function run(){
+        self::init();
+
 		$controller = trim(isset($_GET['c'])?$_GET['c']:'index');
 		$action = trim(isset($_GET['a'])?$_GET['a']:'index');
 
@@ -40,5 +46,19 @@ class xcms{
 		    echo $controller;
 			exit('xcms: Controller not found');
 		}
+	}
+
+	public static function loadConfig($filename='common'){
+	    $config_file_path = DATA_DIR.'config/'.$filename.'.php';
+	    if (is_file($config_file_path))
+        {
+            $config = include($config_file_path);
+            return $config;
+        }
+	    else
+        {
+            return null;
+        }
+
 	}
 }

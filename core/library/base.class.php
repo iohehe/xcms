@@ -6,6 +6,7 @@ class base
 
     public function __construct(){
         $this->view = $this::loadLibraryClass('view');
+        $this->model = $this::loadLibraryClass('model');
     }
 
     public static function loadLibraryClass($classname, $init=1){

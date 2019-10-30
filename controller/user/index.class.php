@@ -1,9 +1,15 @@
 <?php
 class index extends base{
 
-
 	public function indexAction(){
-       $this->view->display('index');
+	    if (isset($_GET['id']))
+        {
+            $id = (int)($_GET['id']);
+        }
+	    else
+	    {
+            $this->view->display('index');
+        }
 	}
 
 	public function sayhelloAction(){
