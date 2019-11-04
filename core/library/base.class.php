@@ -38,5 +38,40 @@ class base
                 return false;
             }
     }
+
+    // get,post取前过滤
+    public static function get($string){
+        if (!isset($_GET[$string]))
+        {
+            return null;
+        }
+        if (!is_array($_GET[$string]))
+        {
+            return trim($_GET[$string]);
+        }
+        return null;
+    }
+
+    public static function post($string){
+        if (!isset($_POST[$string]))
+        {
+            return null;
+        }
+        if (!is_array($_POST[$string]))
+        {
+            return trim($_POST[$string]);
+        }
+        else
+        {
+            return $_POST[$string];
+        }
+    }
+
+    // 所有提示信息
+    public static function showMessage($msg)
+    {
+        echo $msg;
+        exit;
+    }
 }
 

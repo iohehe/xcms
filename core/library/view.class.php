@@ -20,7 +20,6 @@ class view{
 
        }
 
-
        // load the static template
        if ($file_name == null)
        {
