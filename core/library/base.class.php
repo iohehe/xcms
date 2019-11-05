@@ -3,6 +3,7 @@ class base
 {
 
     protected $view;
+    protected $model;
 
     public function __construct(){
         $this->view = $this::loadLibraryClass('view');
