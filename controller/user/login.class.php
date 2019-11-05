@@ -6,8 +6,9 @@ class login extends Base{
         {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
+            $this->db->setTableName('user');
         }
+
        include $this->view->display('login');
     }
 }
