@@ -3,19 +3,21 @@
 
 class model
 {
-    protected static $_conn = null;
+    protected $_conn = null;
+    protected $table_name = null;
 
     public function __construct(){
         $db_config = xcms::loadConfig('database');
-        self::connect($db_config);
+        $this->connect($db_config);
     }
 
     # TODO: 改单例模式
-    public static function connect($config){
+    public function connect($config){
         if (!is_array($config))
         {
            exit('Xcms: no database config file');
         }
+
         $db_host = trim($config['host']);
         $db_user = trim($config['db_user']);
         $db_pwd = trim($config['db_pwd']);
@@ -23,22 +25,22 @@ class model
         $db_name = trim($config['db_name']);
         $db_prefix = trim($config['db_prefix']);
 
-        @ self::$_conn = mysqli_connect($db_host, $db_user, $db_pwd, $db_name);
+        @ $this->_conn = mysqli_connect($db_host, $db_user, $db_pwd, $db_name);
         if(mysqli_connect_errno())
         {
             exit('Xcms: error to connect');
         }
     }
 
-    public function getOne($sql, $para){
-       if (!$sql)
-       {
-           return flase;
-       }
+    #TODO: diff between $this and :: in this case
+    public function getOne($table_name, $key, $value=null){
+        $sql = "select * from $table_name where $key='$value'";
+        $result = mysqli_query($this->_conn, $sql);
+        $num = mysqli_num_rows($result);
+        for ($i=0; $i<$num; $i++)
+        {
+            $row = mysqli_fetch_assoc($result);
+        }
+        return $row;
     }
-
-    public function getTableName(){
-
-    }
-
 }

@@ -4,11 +4,30 @@ class login extends Base{
     public function indexAction(){
         if ($_POST['submit'])
         {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $this->db->setTableName('user');
+            $user = $_POST['username'];
+            $pwd = $_POST['password'];
+            if ($user&&$pwd)
+            {
+                $db_user_info = $this->model->getOne('user', 'name', $user);
+
+                if (!$db_user_info)
+                {
+                    echo('<br />Xcms: No user or wrong password<br />');
+                }
+                else
+                {
+                    if ($pwd === $db_user_info['password'])
+                    {
+                        echo "login success";
+                    }
+                    else
+                    {
+                        echo('<br />Xcms: No user or wrong password<br />');
+                    }
+                }
+           }
         }
 
-       include $this->view->display('login');
+        include $this->view->display('login');
     }
 }
