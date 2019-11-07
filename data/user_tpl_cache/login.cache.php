@@ -9,7 +9,7 @@
         <form action="" method="post" >
             <p>username: <input type="text" name="username" /></p>
             <p>password: <input type="text" name="password" /></p>
-            <p>captcha :<input type="text" name="chaptcha" /> <img src="../index.php?c="</p>
+            <p>captcha :<input type="text" name="chaptcha" /> <img src="index.php?c=login&a=captcha&width=85&height=26"/></p>
             <p><input type="submit" name="submit" value="Submit"/></p>
         </form>
 
