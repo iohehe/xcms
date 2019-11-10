@@ -30,7 +30,8 @@ class login extends Base{
                     {
                         if ($pwd === $db_user_info['password'])
                         {
-                            echo "login success";
+                            $this->session->set('user_name', $db_user_info['name']);
+                            $this->jumpAction("login success","index.php?c=account&a=index");
                         }
                         else
                         {
@@ -43,12 +44,11 @@ class login extends Base{
             {
                 exit("Xcms: captcha wrong");
             }
-
-
         }
         else
         {
-            exit("Xcms: empty form");
+            include $this->view->display('login');
+            exit();
         }
 
         include $this->view->display('login');
@@ -59,5 +59,12 @@ class login extends Base{
         $width = $_GET['width'];
         $height = $_GET['height'];
         $image->createCaptcha($width, $height);
+    }
+
+    public function jumpAction($msg, $url=NLL, $wait=3){
+       echo "<!DOCTYPE><html><head><meta http-equiv='Refresh' content='".$wait."; URL=".$url."' </head>";
+       echo "<meta http-equiv='Content-Type'content='text/html; charset=utf-8'>";
+       echo '<h4>Login Success</h4>';
+       exit();
     }
 }

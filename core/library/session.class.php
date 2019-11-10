@@ -4,7 +4,6 @@ class session{
 
     protected static $_start = false;
 
-
    public static function start(){
            if (self::$_start === true)
            {
