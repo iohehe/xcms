@@ -18,11 +18,17 @@
                 <td>email</td>
                 <td><?php echo $email; ?></td>
             </tr>
+
+            <br />
             <tr>
-                <td>profile</td>
-                <td><img src=""/></td>
-                <td></td>
+                <td>
+                    <form enctype="multipart/form-data" method="post" action="index.php?c=account&a=uploadProfile">
+                        <input type="file" name="profile" />
+                        <input type="submit" name="submit" value="Submit" />
+                    </form>
+                </td>
             </tr>
+            <tr><img src=""/></tr>
         </tbody>
     </table>
 </body>

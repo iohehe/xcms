@@ -49,7 +49,7 @@ class xcms{
 	}
 
 	public static function loadConfig($filename='common'){
-	    $config_file_path = DATA_DIR.'config/'.$filename.'.php';
+	    $config_file_path = DATA_DIR.'config/'.$filename.'.config.php';
 	    if (is_file($config_file_path))
         {
             $config = include($config_file_path);

@@ -6,12 +6,12 @@ class model
     protected $_conn = null;
     protected $table_name = null;
 
+
     public function __construct(){
         $db_config = xcms::loadConfig('database');
         $this->connect($db_config);
     }
 
-    # TODO: 改单例模式
     public function connect($config){
         if (!is_array($config))
         {
@@ -32,7 +32,7 @@ class model
         }
     }
 
-    #TODO: diff between $this and :: in this case
+
     public function getOne($table_name, $key, $value=null){
         $sql = "select * from $table_name where $key='$value'";
         $result = mysqli_query($this->_conn, $sql);
