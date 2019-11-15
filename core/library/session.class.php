@@ -2,9 +2,14 @@
 
 class session{
 
-    protected static $_start = false;
+   protected static $_start = false;
 
-   public static function start(){
+   public function __construct(){
+       $this->start();
+       return true;
+   }
+
+    public static function start(){
            if (self::$_start === true)
            {
                return true;

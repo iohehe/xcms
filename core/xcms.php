@@ -17,6 +17,7 @@ class xcms{
     // this may be cool
     private static function init(){
         require_once(LIBRARY_DIR.'base.class.php');
+        require_once ('common.php');
     }
 
     public static function run(){

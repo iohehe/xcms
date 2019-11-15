@@ -4,11 +4,6 @@ class login extends Base{
     public function indexAction(){
         if (isset($_POST)&&$_POST['submit']!='')
         {
-            if (!isset($_SESSION))
-            {
-                session_start();
-            }
-
             if (!$_POST['captcha']=='')
             {
 

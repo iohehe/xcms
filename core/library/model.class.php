@@ -43,4 +43,16 @@ class model
         }
         return $row;
     }
+
+    public function upload($table_name, $key, $value, $condition=null){
+        $sql = "UPDATE `$table_name` SET `$key`='$value' $condition";
+        if(mysqli_query($this->_conn, $sql))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
