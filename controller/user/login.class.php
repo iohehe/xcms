@@ -15,7 +15,7 @@ class login extends Base{
                 $pwd = $_POST['password'];
                 if ($user&&$pwd)
                 {
-                    $db_user_info = $this->model->getOne('user', 'name', $user);
+                    $db_user_info = $this->model->table('user')->where('name', $user)->getOne();
 
                     if (!$db_user_info)
                     {
@@ -54,12 +54,5 @@ class login extends Base{
         $width = $_GET['width'];
         $height = $_GET['height'];
         $image->createCaptcha($width, $height);
-    }
-
-    public function jumpAction($msg, $url=NLL, $wait=3){
-       echo "<!DOCTYPE><html><head><meta http-equiv='Refresh' content='".$wait."; URL=".$url."' </head>";
-       echo "<meta http-equiv='Content-Type'content='text/html; charset=utf-8'>";
-       echo '<h4>Login Success</h4>';
-       exit();
     }
 }

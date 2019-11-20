@@ -75,5 +75,13 @@ class base
         echo $msg;
         exit;
     }
+
+    // 跳转
+    public function jumpAction($msg, $url=NLL, $wait=3){
+        echo "<!DOCTYPE><html><head><meta http-equiv='Refresh' content='".$wait."; URL=".$url."' </head>";
+        echo "<meta http-equiv='Content-Type'content='text/html; charset=utf-8'>";
+        echo '<h4>Login Success</h4>';
+        exit();
+    }
 }
 

@@ -6,6 +6,11 @@ class model
     protected $_conn = null;
     protected $table_name = null;
 
+    public $table = '';
+    public $limit = '';
+    public $where = '';
+    public $sql='';
+
 
     public function __construct(){
         $db_config = xcms::loadConfig('database');
@@ -32,10 +37,26 @@ class model
         }
     }
 
+    public function table($str){
+       $this->table = '`'.$str.'`';
+       return $this;
+    }
 
-    public function getOne($table_name, $key, $value=null){
-        $sql = "select * from $table_name where $key='$value'";
-        $result = mysqli_query($this->_conn, $sql);
+    public function limit($str){
+       $this->limit =  'limit '.$str;
+       return $this;
+    }
+
+    public function where($key, $value){
+       $this->where = 'where '. $key.'='."'".$value."'";
+       return $this;
+    }
+
+    public function getOne(){
+        #$sql = "select * from $table_name where $key='$value'";
+        $this->limit('0, 1');
+        $this->sql = "select * from $this->table $this->where $this->limit";
+        $result = mysqli_query($this->_conn, $this->sql);
         $num = mysqli_num_rows($result);
         for ($i=0; $i<$num; $i++)
         {
