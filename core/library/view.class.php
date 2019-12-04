@@ -11,7 +11,10 @@ class view{
        $this->user_compile_dir = DATA_DIR.'user_tpl_cache/';
     }
 
-
+    /**
+     * 模版生成
+     * @param null $file_name
+     */
     public function display($file_name=null){
         // load the assign data
        if (!empty($this->_data))
@@ -94,6 +97,12 @@ class view{
     }
 
 
+    /**
+     * 赋值模板变量
+     * @param $key
+     * @param null $value
+     * @return bool
+     */
     public function assign($key, $value=null){
         if (!$key)
         {
