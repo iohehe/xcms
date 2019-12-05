@@ -68,11 +68,17 @@ class view{
             // 此处进行模板内容替换规则编写
             // like jinja2
             $regex_array = array(
-                '#{{ (.+?) }}#is',
+                '#{{ \$(.+?) }}#is',
+                '#{{ if\s+(.+?)\s? }}#is',
+                '#{{ else }}#is',
+                '#{{ endif }}#is'
             );
 
             $replace_array = array(
                 "<?php echo \$\\1; ?>",
+                "<?php if \\1 { ?>",
+                "<?php }else{ ?>",
+                "<?php } ?>"
             );
 
 
