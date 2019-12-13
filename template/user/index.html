@@ -33,6 +33,7 @@
         <p class="user_info"><b>hello,{{ $user_name }}</b></p>
         {{ else }}
         <p class="user_info"><b>hello, GUEST</b></p>
+        <a href="{{ route_for(login/index) }}">login</a>
         {{ endif }}
     </div>
     <div class="body">

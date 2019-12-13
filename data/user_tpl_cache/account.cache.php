@@ -12,11 +12,11 @@
         <tbody border="1">
             <tr>
                 <td>user_name</td>
-                <td><?php echo $name; ?></td>
+                <td>{{ name }}</td>
             </tr>
             <tr>
                 <td>email</td>
-                <td><?php echo $email; ?></td>
+                <td>{{ email }}</td>
             </tr>
 
             <br />
@@ -31,6 +31,6 @@
         </tbody>
     </table>
     <br />
-    <tr><img src="data/upload/<?php echo $profile; ?>"/></tr>
+    <tr><img src="data/upload/{{ profile }}"/></tr>
 </body>
 </html>

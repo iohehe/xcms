@@ -71,16 +71,17 @@ class view{
                 '#{{ \$(.+?) }}#is',
                 '#{{ if\s+(.+?)\s? }}#is',
                 '#{{ else }}#is',
-                '#{{ endif }}#is'
+                '#{{ endif }}#is',
+                '#{{ route_for\((.*)\/(.*)\) }}#is'
             );
 
             $replace_array = array(
                 "<?php echo \$\\1; ?>",
                 "<?php if \\1 { ?>",
                 "<?php }else{ ?>",
-                "<?php } ?>"
+                "<?php } ?>",
+                "index.php?c=\\1&a=\\2"
             );
-
 
             return preg_replace($regex_array ,$replace_array ,$view_content);
     }

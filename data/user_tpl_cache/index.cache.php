@@ -33,6 +33,7 @@
         <p class="user_info"><b>hello,<?php echo $user_name; ?></b></p>
         <?php }else{ ?>
         <p class="user_info"><b>hello, GUEST</b></p>
+        <a href="index.php?c=login&a=index">login</a>
         <?php } ?>
     </div>
     <div class="body">
