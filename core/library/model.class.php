@@ -37,8 +37,9 @@ class model
         }
     }
 
-    public function table($str){
-       $this->table = '`'.$str.'`';
+    public function table($table_name){
+       $this->table = '`'.$table_name.'`';
+       $this->loadTableModel($table_name);
        return $this;
     }
 
@@ -76,4 +77,5 @@ class model
             return false;
         }
     }
+
 }

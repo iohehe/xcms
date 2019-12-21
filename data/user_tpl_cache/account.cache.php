@@ -12,11 +12,11 @@
         <tbody border="1">
             <tr>
                 <td>user_name</td>
-                <td>{{ name }}</td>
+                <td><?php echo $name; ?></td>
             </tr>
             <tr>
                 <td>email</td>
-                <td>{{ email }}</td>
+                <td><?php echo $email; ?></td>
             </tr>
 
             <br />
@@ -31,6 +31,12 @@
         </tbody>
     </table>
     <br />
-    <tr><img src="data/upload/{{ profile }}"/></tr>
+    <tr><img src="data/upload/<?php echo $profile; ?>"/></tr>
+<hr />
+    <form method="post" action="index.php?c=account&a=addArticle">
+        <p>title: <input type="text" name="title"/></p>
+        <p>content: <textarea name="content" rows="10" cols="30"></textarea></p>
+        <p><input type="submit" name="submit" value="Submit">
+    </form>
 </body>
 </html>

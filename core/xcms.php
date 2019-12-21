@@ -8,6 +8,7 @@ define('DATA_DIR', XCMS.'data/');
 define('TEMPLATE_DIR', XCMS.'template/');
 define('LIBRARY_DIR', XCMS.'core/library/');
 define('USER_CONTROLLER_DIR', XCMS.'controller/user/');
+define('USER_MODEL_DIR', XCMS.'model/user/');
 
 
 /**
@@ -16,7 +17,9 @@ define('USER_CONTROLLER_DIR', XCMS.'controller/user/');
 class xcms{
     // this may be cool
     private static function init(){
+        # base是初始化是加载一次请求所需的基本资源
         require_once(LIBRARY_DIR.'base.class.php');
+        # common.php是一堆供全局使用工具函数
         require_once ('common.php');
     }
 

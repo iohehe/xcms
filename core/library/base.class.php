@@ -7,7 +7,7 @@ class base
 
     public function __construct(){
         $this->view = $this::loadLibraryClass('view');
-        $this->model = $this::loadLibraryClass('model');
+        $thist->model = $this::loadLibraryClass('model');
         $this->session = $this::loadLibraryClass('session');
     }
 
@@ -41,7 +41,15 @@ class base
             }
     }
 
-    // get,post取前过滤
+    public function loadModelClass($model){
+        if (is_file(USER))
+    }
+
+    /**
+     * 如果要实现全局过滤， 那么在这儿实现了。
+     * @param $string
+     * @return string|null
+     */
     public static function get($string){
         if (!isset($_GET[$string]))
         {

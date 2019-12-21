@@ -19,6 +19,7 @@ class view{
         // load the assign data
        if (!empty($this->_data))
        {
+           var_dump($this->_data);
            extract($this->_data,EXTR_PREFIX_SAME, 'data');
 
        }
