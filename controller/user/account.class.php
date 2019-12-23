@@ -3,7 +3,8 @@
 class account extends base{
 
     public function indexAction(){
-            $db_user_info = $this->model->table('user')->where('name', $_SESSION['user_name'])->getOne();
+            #$db_user_info = $this->model->table('user')->where('name', $_SESSION['user_name'])->getOne();
+            $db_user_info = $this->model('user')->find("name='{$_SESSION['user_name']}'");
             $this->view->assign($db_user_info);
             $this->view->display('account');
     }

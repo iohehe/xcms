@@ -7,7 +7,7 @@ class base
 
     public function __construct(){
         $this->view = $this::loadLibraryClass('view');
-        $thist->model = $this::loadLibraryClass('model');
+        $this->model = $this::loadLibraryClass('model');
         $this->session = $this::loadLibraryClass('session');
     }
 
@@ -41,12 +41,30 @@ class base
             }
     }
 
-    public function loadModelClass($model){
-        if (is_file(USER))
+    /**
+     * 这里是第一版的model层，构思根据table从具体表的model加载baseModel
+     * @param $model
+     */
+    public function model($model)
+    {
+        $class_path = USER_MODEL_DIR . $model . '.model.class.php';
+        var_dump($class_path);
+        if (is_file($class_path)) {
+            include($class_path);
+            $class_name = $model."Model";
+            $load_model = new $class_name;
+            return $load_model;
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
     /**
      * 如果要实现全局过滤， 那么在这儿实现了。
+     * 注： 全局过滤其实不是一种健壮的开发模式， 因为一旦全局过滤用户的输入就被系统污染了。 可以通过伪全局或者局部过滤
      * @param $string
      * @return string|null
      */

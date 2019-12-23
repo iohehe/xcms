@@ -17,6 +17,14 @@ class model
         $this->connect($db_config);
     }
 
+    # 居然可以拿到了子类的table_name属性。
+    public function find($case){
+        echo "<br />";
+        $this->where = $case;
+        $this->getOne();
+    }
+
+
     public function connect($config){
         if (!is_array($config))
         {
@@ -39,7 +47,6 @@ class model
 
     public function table($table_name){
        $this->table = '`'.$table_name.'`';
-       $this->loadTableModel($table_name);
        return $this;
     }
 
@@ -53,12 +60,14 @@ class model
        return $this;
     }
 
-    public function getOne(){
+    public function getOne($case){
         #$sql = "select * from $table_name where $key='$value'";
         $this->limit('0, 1');
-        $this->sql = "select * from $this->table $this->where $this->limit";
+        $this->sql = "select * from `{$this->table_name}` where {$this->where} {$this->limit};";
+        echo $this->sql;
         $result = mysqli_query($this->_conn, $this->sql);
         $num = mysqli_num_rows($result);
+        echo $num;
         for ($i=0; $i<$num; $i++)
         {
             $row = mysqli_fetch_assoc($result);
