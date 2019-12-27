@@ -21,7 +21,7 @@ class model
     public function find($case){
         echo "<br />";
         $this->where = $case;
-        $this->getOne();
+        return $this->getOne();
     }
 
 
@@ -64,10 +64,8 @@ class model
         #$sql = "select * from $table_name where $key='$value'";
         $this->limit('0, 1');
         $this->sql = "select * from `{$this->table_name}` where {$this->where} {$this->limit};";
-        echo $this->sql;
         $result = mysqli_query($this->_conn, $this->sql);
         $num = mysqli_num_rows($result);
-        echo $num;
         for ($i=0; $i<$num; $i++)
         {
             $row = mysqli_fetch_assoc($result);

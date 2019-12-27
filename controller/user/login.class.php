@@ -15,7 +15,7 @@ class login extends Base{
                 $pwd = $_POST['password'];
                 if ($user&&$pwd)
                 {
-                    $db_user_info = $this->model->table('user')->where('name', $user)->getOne();
+                    $db_user_info = $this->model('user')->find("`name`='{$user}'");
                     if (!$db_user_info)
                     {
                         echo('<br />Xcms: No user or wrong password<br />');

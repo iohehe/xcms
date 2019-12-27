@@ -6,10 +6,6 @@ class index extends base{
         $this->view->display('index');
 	}
 
-	public function sayhelloAction(){
-	    echo 'hello';
-    }
-
     public function testXSSAction(){
 	    $payload = "<script>alert(1)</script>";
 	    $this->view->assign('user_name', $payload);
