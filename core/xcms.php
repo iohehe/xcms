@@ -15,7 +15,8 @@ define('USER_MODEL_DIR', XCMS.'model/user/');
  * Class xcms
  */
 class xcms{
-    // this may be cool
+
+    // 初始化需要加载的资源放在这
     private static function init(){
         # base是初始化是加载一次请求所需的基本资源
         require_once(LIBRARY_DIR.'base.class.php');
@@ -26,9 +27,11 @@ class xcms{
     public static function run(){
         self::init();
 
+        # 选择控制器和方法
 		$controller = trim(isset($_GET['c'])?$_GET['c']:'index');
 		$action = trim(isset($_GET['a'])?$_GET['a']:'index');
 
+		# 加载所需的资源
 		if (is_file(USER_CONTROLLER_DIR.$controller.'.class.php'))
 		{
 			include(USER_CONTROLLER_DIR.$controller.'.class.php');
@@ -52,6 +55,7 @@ class xcms{
 		}
 	}
 
+	// 加载配置文件
 	public static function loadConfig($filename='common'){
 	    $config_file_path = DATA_DIR.'config/'.$filename.'.config.php';
 	    if (is_file($config_file_path))

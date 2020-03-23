@@ -6,8 +6,11 @@ class base
     protected $model;
 
     public function __construct(){
-        $this->view = $this::loadLibraryClass('view');
+        # M
         $this->model = $this::loadLibraryClass('model');
+        # V
+        $this->view = $this::loadLibraryClass('view');
+        # Session
         $this->session = $this::loadLibraryClass('session');
     }
 
