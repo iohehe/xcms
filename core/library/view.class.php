@@ -19,9 +19,7 @@ class view{
         // load the assign data
        if (!empty($this->_data))
        {
-           var_dump($this->_data);
            extract($this->_data,EXTR_PREFIX_SAME, 'data');
-
        }
 
        // load the static template
@@ -35,7 +33,7 @@ class view{
 
         if (is_file($template_file_path))
        {
-           $view_content = $this->loadViewContent($template_file_path);
+           $view_content = $this->loadTemplate($template_file_path);
            // a cache here(which has be compiled)
            $this->createCompilerFile($compile_file_path, $view_content);
        }
@@ -54,9 +52,9 @@ class view{
      * @param $file_name
      * @return string|string[]|null
      */
-    protected function loadViewContent($file_name){
-        $view_content = file_get_contents($file_name);
-        return $this->handleViewFile($view_content);
+    protected function loadTemplate($file_name){
+        $template_content = file_get_contents($file_name);
+        return $this->replaceKeyWords($template_content);
     }
 
 
@@ -65,7 +63,7 @@ class view{
      * @param $view_content
      * @return string|string[]|null
      */
-    protected function handleViewFile($view_content){
+    protected function replaceKeyWords($view_content){
             // 此处进行模板内容替换规则编写
             // like jinja2
             $regex_array = array(
@@ -116,16 +114,16 @@ class view{
         {
             return false;
         }
-        else if(is_array($key))
+        else if(!is_array($key))
+        {
+            $this->_data[$key]  =  $value;
+        }
+        else
         {
             foreach($key as $k=>$v)
             {
                 $this->_data[$k] = $v;
             }
-        }
-        else
-        {
-            $this->_data[$key]  =  $value;
         }
         return true;
     }

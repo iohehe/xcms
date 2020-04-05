@@ -14,7 +14,7 @@ class base
         $this->session = $this::loadLibraryClass('session');
     }
 
-    public static function loadLibraryClass($classname, $init=1){
+    public static function loadLibraryClass($classname){
             static $loaded_classes = array();
             $key = md5($classname);
 
@@ -26,16 +26,7 @@ class base
             if(is_file(LIBRARY_DIR.$classname.'.class.php'))
             {
                 include(LIBRARY_DIR.$classname.'.class.php');
-                $name = $classname;
-
-                if($init)
-                {
-                    $loaded_classes[$key]  = new $classname;
-                }
-                else
-                {
-                    $loaded_classes[$key] = true;
-                }
+                $loaded_classes[$key]  = new $classname;
                 return $loaded_classes[$key];
             }
             else

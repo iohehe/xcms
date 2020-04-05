@@ -6,17 +6,14 @@ class session{
 
    public function __construct(){
        $this->start();
-       return true;
    }
 
     public static function start(){
-           if (self::$_start === true)
+           if (self::$_start != true)
            {
-               return true;
+               session_start();
+               self::$_start = true;
            }
-           session_start();
-           self:$_start = false;
-           return true;
     }
 
    public static function set($key, $value=null){
